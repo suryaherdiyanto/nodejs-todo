@@ -1,0 +1,25 @@
+{
+  "name": "todo",
+  "version": "1.0.0",
+  "description": "simple todo app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/suryaherdiyanto/nodejs-todo.git"
+  },
+  "author": "surya herdiyanto",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/suryaherdiyanto/nodejs-todo/issues"
+  },
+  "homepage": "https://github.com/suryaherdiyanto/nodejs-todo#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4",
+    "pug": "^3.0.0"
+  }
+}
