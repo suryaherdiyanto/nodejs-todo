@@ -30,20 +30,24 @@ app.use(express.json());
 app.use(express.static('public'));
 
 app.get('/', function(req, res) {
-    
+    res.render('home');
+});
+
+app.get('/load-items', function(req, res) {
     let tasks = [];
 
     db.collection('tasks').find().toArray(function(error, result) {
-
         if (error !== null) {
             console.error(`Mongodb error: ${error}`)
         }
 
         tasks.push(...result);
 
-        res.render('home', { tasks: tasks });
+        return res.status(200).json({
+            data: tasks,
+            count: tasks.length
+        });
     });
-
 });
 
 app.post('/save-item', function(req, res) {
@@ -54,7 +58,16 @@ app.post('/save-item', function(req, res) {
             console.error(`Mongodb error: ${error}`)
         }
 
-        res.redirect('/');
+        db.collection('tasks').findOne({ text: item }, function(_, result) {
+            console.log(result);
+
+            res.status(201).json({
+                status: 'ok',
+                message: 'Task has been saved',
+                task: result
+            });
+        });
+
     });
 });
 
